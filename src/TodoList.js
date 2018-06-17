@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import TodoItem from './TodoItem'
 
 class todolist extends Component {
   constructor(props) {
@@ -10,11 +11,6 @@ class todolist extends Component {
     }
     this.selectTodo = this.selectTodo.bind(this)
   } 
-
-  get = () => {
-
-    
-  }
 
   selectTodo = (id) => {
     console.log('id = ' + id)
@@ -28,14 +24,6 @@ class todolist extends Component {
       }
     )
     .catch(err => console.log(err))
-
-    // const curTodo = this.state.todos.filter((todo) => {
-    //   return todo.id === id
-    // })
-    // this.setState({
-    //   curTodo: curTodo
-    // }) 
-   
   }
   
   render = () => {
@@ -53,11 +41,9 @@ class todolist extends Component {
             <button onClick={removeTodo.bind(this, todo.id)}>delete</button>
             <button onClick={updateTodo.bind(this, todo.id, this.props.newUpdate)}>update</button>
               {this.state.curTodo.id === todo.id &&
-                <ul>
-                  {this.state.curTodo.todoItems.map(item => (
-                    <li>{item.content}</li>
-                  ))}
-                </ul>
+                <TodoItem
+                curTodo={this.state.curTodo}
+                />
               }
             </li>)
         )}
