@@ -61,6 +61,7 @@ class TodoItem extends Component {
   }
 
   updateTodoItem = (id, newContent) => {
+    if(!newContent) return;
     axios.put("http://127.0.0.1:8000/api/todos/" + id, {
         content:newContent
     })
@@ -79,6 +80,7 @@ class TodoItem extends Component {
       console.log(this.state.todoItems)
     return (
         <ul>
+        <h4>Todo Items:</h4>
             {this.state.todoItems.map(todoItem => 
                 (<li 
                 key={todoItem.id}

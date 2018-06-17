@@ -67,6 +67,7 @@ class Todos extends Component {
   }
 
   updateTodo = (id, newTitle) => {
+    if(!newTitle) return;
     axios.put("http://127.0.0.1:8000/api/todos/" + id, {
         todoId:id,
         title:newTitle
@@ -84,7 +85,9 @@ class Todos extends Component {
   render() {
     return (
         <div>
-          <h3>TODO</h3>          
+          <h3
+          className='text-center'
+          >TODO</h3>          
           <TodoList
             todos={this.state}
             remove={this.removeTodo}
